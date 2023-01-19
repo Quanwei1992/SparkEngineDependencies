@@ -1,3 +1,6 @@
 [submodule "extern/shaderc"]
 	path = extern/shaderc
 	url = https://github.com/Quanwei1992/shaderc.git
+[submodule "extern/mono"]
+	path = extern/mono
+	url = https://github.com/Quanwei1992/mono.git
