@@ -1,12 +1,24 @@
 @echo off
-pushd
-cd ..
-echo Build shaderc
+pushd .
 
-python extern/shaderc/utils/git-sync-deps
-cmake -S ./extern/shaderc -B build/shaderc -DSHADERC_SKIP_TESTS=ON -DSHADERC_SKIP_EXAMPLES=ON -DSHADERC_SKIP_COPYRIGHT_CHECK=ON
-cmake --build build/shaderc --config Debug
-cmake --build build/shaderc --config Release
-cmake --install build/shaderc --config Debug --prefix archive/shaderc_win64_debug
-cmake --install build/shaderc --config Release --prefix archive/shaderc_win64_release
+@echo cleanup
+IF exist ..\archive ( rmdir ..\archive /s /q )
+mkdir ..\archive
+
+IF exist ..\tmp ( rmdir ..\tmp /s /q )
+IF exist ..\archive.7z ( DEL /F ..\archive.7z )
+
+
+@echo Bulding
+call build_shaderc.cmd
+call build_mono.cmd
+
+@echo Archiving 
+
+..\tools\7zr a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on ..\archive.7z ..\archive
+
 popd
+
+
+
+@echo Done.
