@@ -12,6 +12,7 @@ IF exist ..\archive.7z ( DEL /F ..\archive.7z )
 @echo Bulding
 call build_shaderc.cmd
 call build_mono.cmd
+call build_assimp.cmd
 
 @echo Archiving 
 

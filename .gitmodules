@@ -4,3 +4,6 @@
 [submodule "extern/mono"]
 	path = extern/mono
 	url = https://github.com/Quanwei1992/mono.git
+[submodule "extern/assimp"]
+	path = extern/assimp
+	url = https://github.com/Quanwei1992/assimp.git
